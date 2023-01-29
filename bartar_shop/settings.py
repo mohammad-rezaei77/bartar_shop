@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'shop.apps.WebsiteConfig',
     'accounts',
     'payment',
+    'taggit',
+    
 ]
 
 MIDDLEWARE = [

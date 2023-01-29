@@ -1,19 +1,51 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from django.views.generic.list import ListView
+from django.views.generic import TemplateView, FormView,DetailView
+from django.views.generic.list import ListView 
 from .models import Product
+from shop.forms import ContactForm
 # Create your views here.
 
 # def index_view(request):                              
 #     return render(request,"website/index.html")
 
-class IndexView(ListView):
-    # template_name = "shop/index.html"
-    model = Product
-    paginate_by = 12
-    context_object_name = "Products"
+class IndexView(TemplateView):
+    # queryset = Product.objects.filter(status=True)
+    # context_object_name = "products"
     ordering = ['id',]
+    # paginate_by = 4
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context ["products"] = Product.objects.filter(status=True)
+        context ["best_products"] = Product.objects.filter(status=True,tags__name = "best")
+        return context
+        
+class ProductDetailView(DetailView) :
+    model = Product
+    context_object_name = "Product"
+    
+    
+    
+
+
+        
+        
+ 
+ 
+    
+class ContactFormView(FormView):
+    template_name = 'shop/contact.html'
+    form_class = ContactForm
+    success_url = '/index/'
+    
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.send_email()
+        return super().form_valid(form)
+    
+    
+
     
     
     

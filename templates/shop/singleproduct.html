@@ -1,0 +1,58 @@
+
+    <div class="product product-2">
+        <figure class="product-media">
+
+            {% for tag in product.tags.all %}
+                
+                {% if tag.name == "best" %}
+                    <span class="product-label label-circle label-top">برتر</span>
+                {% endif %}
+                
+                {% if tag.name == "special" %}   
+                    <span class="product-label label-circle label-sale">فروش ویژه</span>                    
+                {% endif %}
+                
+            {% endfor %}
+
+            <a href="product.html">
+                <img src="{{ product.cover.url }}"
+                    alt="تصویر محصول" class="product-image">
+            </a>
+
+            <div class="product-action-vertical">
+                <a href="#"
+                    class="btn-product-icon btn-wishlist btn-expandable"><span>افزودن
+                        به لیست علاقه مندی</span></a>
+            </div><!-- End .product-action -->
+
+            <div class="product-action product-action-dark">
+                <a href="#" class="btn-product btn-cart"
+                    title="افزودن به سبد خرید"><span>افزودن به سبد خرید</span></a>
+                <a href="popup/quickView.html" class="btn-product btn-quickview"
+                    title="مشاهده سریع محصولات"><span>مشاهده سریع</span></a>
+            </div><!-- End .product-action -->
+        </figure><!-- End .product-media -->
+
+        <div class="product-body">
+            <div class="product-cat">
+                <a href="#"> 
+                    {% for cat in product.category.all %}
+                    <a href="/"> {{ cat.name }} </a>
+                {% endfor %}
+                </a>
+            </div><!-- End .product-cat -->
+            <h3 class="product-title"><a href="{% url 'shop:ProductView' pk=product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
+            <div class="product-price">
+                <span class="new-price">{{ product.price }} تومان</span>
+                <span class="old-price">1,890,000 تومان</span>
+            </div><!-- End .product-price -->
+            <div class="ratings-container">
+                <div class="ratings">
+                    
+                    <div class="ratings-val" style="width: {{product.rate}}%;"></div>
+                    <!-- End .ratings-val -->
+                </div><!-- End .ratings -->
+                <span class="ratings-text">( {{ product.counted_view }} بازدید )</span>
+            </div><!-- End .rating-container -->
+        </div><!-- End .product-body -->
+    </div><!-- End .product -->

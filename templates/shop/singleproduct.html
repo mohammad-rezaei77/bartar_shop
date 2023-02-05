@@ -14,7 +14,7 @@
                 
             {% endfor %}
 
-            <a href="product.html">
+            <a href="{% url 'shop:ProductView' slug=product.slug %}">
                 <img src="{{ product.cover.url }}"
                     alt="تصویر محصول" class="product-image">
             </a>
@@ -41,7 +41,7 @@
                 {% endfor %}
                 </a>
             </div><!-- End .product-cat -->
-            <h3 class="product-title"><a href="{% url 'shop:ProductView' pk=product.id %}">{{ product.name }}</a></h3><!-- End .product-title -->
+            <h3 class="product-title"><a href="{% url 'shop:ProductView' slug=product.slug %}">{{ product.name }}</a></h3><!-- End .product-title -->
             <div class="product-price">
                 <span class="new-price">{{ product.price }} تومان</span>
                 <span class="old-price">1,890,000 تومان</span>

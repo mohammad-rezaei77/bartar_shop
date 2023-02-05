@@ -181,21 +181,9 @@
                                     }
                                 }
                             }'>
-                            {% for product in products %}
-                                    
-                                        
-                                        
-                                             {% for tag in product.tags.all %}
-                                                {% if tag.name == "bartarin" %}
-                                                
-                                                    {% include 'shop/singleproduct.html' %}
-                                                
-                                                {% endif %}
-                                            {% endfor %} 
-                                        
-                                    {% endfor %}
-                                     
-                            
+                            {% for product in products_featured %}
+                                {% include 'shop/singleproduct.html' %}
+                            {% endfor %}
                         </div><!-- End .owl-carousel -->
                     </div><!-- .End .tab-pane -->
                     <div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel"
@@ -223,12 +211,8 @@
                                 }
                             }'>
                             
-                            {% for product in products %}
-                                {% for tag in product.tags.all %}
-                                    {% if tag.name == "bishtar" %}
-                                        {% include 'shop/singleproduct.html' %}
-                                    {% endif %}
-                                {% endfor %} 
+                            {% for product in products_top_sale %}
+                                {% include 'shop/singleproduct.html' %}
                             {% endfor %}
                                      
                         </div><!-- End .owl-carousel -->
@@ -257,12 +241,9 @@
                                     }
                                 }
                             }'>
-                            {% for product in products %}
-                                {% for tag in product.tags.all %}
-                                    {% if tag.name == "poremriaz" %}
-                                        {% include 'shop/singleproduct.html' %}
-                                    {% endif %}
-                                {% endfor %} 
+                            
+                            {% for product in products_top %}
+                                {% include 'shop/singleproduct.html' %}
                             {% endfor %}
 
                         </div><!-- End .owl-carousel -->
@@ -338,14 +319,10 @@
                             <div class="products">
                                 <div class="row">
                                     
-                                    {% for product in best_products %}
-                                             {% for tag in product.tags.all %}
-                                                {% if tag.name == "vije" %}
-                                                <div class="col-6">
-                                                    {% include 'shop/singleproduct.html' %}
-                                                </div><!-- End .col-sm-6 -->
-                                                {% endif %}
-                                            {% endfor %} 
+                                    {% for product in specialـdiscount %}
+                                        <div class="col-6">
+                                            {% include 'shop/singleproduct.html' %}
+                                        </div><!-- End .col-sm-6 -->
                                     {% endfor %}
                                      
                                     
@@ -411,7 +388,7 @@
                                     href="#trending-all-tab" role="tab" aria-controls="trending-all-tab"
                                     aria-selected="true">همه</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="trending-tv-link" data-toggle="tab" href="#trending-tv-tab"
                                     role="tab" aria-controls="trending-tv-tab" aria-selected="false">TV</a>
                             </li>
@@ -419,7 +396,7 @@
                                 <a class="nav-link" id="trending-computers-link" data-toggle="tab"
                                     href="#trending-computers-tab" role="tab" aria-controls="trending-computers-tab"
                                     aria-selected="false">کامپیوتر</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" id="trending-phones-link" data-toggle="tab"
                                     href="#trending-phones-tab" role="tab" aria-controls="trending-phones-tab"
@@ -430,10 +407,10 @@
                                     href="#trending-watches-tab" role="tab" aria-controls="trending-watches-tab"
                                     aria-selected="false">ساعت هوشمند</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="trending-acc-link" data-toggle="tab" href="#trending-acc-tab"
                                     role="tab" aria-controls="trending-acc-tab" aria-selected="false">لوازم جانبی</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div><!-- End .heading-right -->
                 </div><!-- End .heading -->
@@ -474,9 +451,7 @@
                                         }
                                     }'>
                                     {% for product in vije_products %}
-                                        {% for cat in product.category.all %}
                                                 {% include 'shop/singleproduct.html' %}
-                                        {% endfor %} 
                                     {% endfor %}
                                 </div><!-- End .owl-carousel -->
                             </div><!-- .End .tab-pane -->
@@ -668,14 +643,14 @@
                                 <a class="nav-link active" id="top-all-link" data-toggle="tab" href="#top-all-tab"
                                     role="tab" aria-controls="top-all-tab" aria-selected="true">همه</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="top-tv-link" data-toggle="tab" href="#top-tv-tab" role="tab"
                                     aria-controls="top-tv-tab" aria-selected="false">TV</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="top-computers-link" data-toggle="tab" href="#top-computers-tab"
                                     role="tab" aria-controls="top-computers-tab" aria-selected="false">کامپیوتر</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" id="top-phones-link" data-toggle="tab" href="#top-phones-tab"
                                     role="tab" aria-controls="top-phones-tab" aria-selected="false">موبایل و تب لت</a>
@@ -684,10 +659,10 @@
                                 <a class="nav-link" id="top-watches-link" data-toggle="tab" href="#top-watches-tab"
                                     role="tab" aria-controls="top-watches-tab" aria-selected="false">ساعت هوشمند</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="top-acc-link" data-toggle="tab" href="#top-acc-tab" role="tab"
                                     aria-controls="top-acc-tab" aria-selected="false">لوازم جانبی</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div><!-- End .heading-right -->
                 </div><!-- End .heading -->
@@ -721,9 +696,7 @@
                                 }
                             }'>
                             {% for product in poremriaz_products %}
-                                {% for cat in product.category.all %}
                                     {% include 'shop/singleproduct.html' %}
-                                {% endfor %}
                              {% endfor %}
                         </div><!-- End .owl-carousel -->
                     </div><!-- .End .tab-pane -->

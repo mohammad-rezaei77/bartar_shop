@@ -5,7 +5,8 @@ from payment.models import Discount
 from time import gmtime, strftime
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
-
+from unidecode import unidecode
+import time
 # from unidecode import unidecode
 # Create your models here.
 
@@ -40,8 +41,8 @@ class Brand(models.Model):
         width_field='imagewidth'  ,
         height_field='imageheight' ,
     )
-    imagewidth = models.PositiveIntegerField(editable = False, default = 50)
-    imageheight = models.PositiveIntegerField(editable = False, default = 50)
+    imagewidth = models.PositiveIntegerField(editable = False, default = 40)
+    imageheight = models.PositiveIntegerField(editable = False, default = 40)
     
     description = models.TextField()
     
@@ -66,15 +67,15 @@ class Color(models.Model):
         return self.name
  
 class Product(models.Model):
-    slug=models.SlugField(allow_unicode=True)
+    slug=models.SlugField(allow_unicode=True,null=True,blank=True)
     name = models.CharField(max_length=150)
     brand = models.ForeignKey(Brand,on_delete=models.SET_NULL,null=True,blank=True)
     color = models.ForeignKey(Color , help_text="Select Color of the product",on_delete=models.SET_NULL,null=True,blank=True)
     
-    desc = models.TextField(max_length=255 ,null=True, blank=True)
+    desc = models.TextField(null=True, blank=True)
     mini_desc = models.CharField(max_length=200)
     
-    category =  models.ManyToManyField(Category)
+    category =  models.ForeignKey(Category,null=True,on_delete=models.SET_NULL)
     inventory = models.ForeignKey(Inventory,on_delete=models.SET_NULL,null=True)
     price = models.PositiveBigIntegerField(null=True,blank=True)
     discount = models.ForeignKey(Discount,on_delete=models.SET_NULL,null=True,blank=True)
@@ -110,9 +111,11 @@ class Product(models.Model):
     imagewidth = models.PositiveIntegerField(editable = False, default = 401)
     imageheight = models.PositiveIntegerField(editable = False, default = 401)
     
-    rate = models.IntegerField(default=0, max_length =3)
-    counted_view=  models.IntegerField(default=0)
+    rate = models.IntegerField(default=0)
+    counted_view =  models.IntegerField(default=0)
+    salesـnumber = models.IntegerField(default=0)
     tags = TaggableManager()
+    
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -124,9 +127,10 @@ class Product(models.Model):
     # Adding brand to admin prepopulated_fields dictionary only returns id ,
     # One way to do is adding save method 
     def save(self):
-        if not self.id: # if this is a new item
-            newslug = '{0} {1}'.format(self.brand, self.name)  
-            self.slug = slugify(newslug)
+        strtime = str(time.time())
+        strtime =  strtime[13:]
+        newslug = '{0}{1} {2}'.format("brt",self.category_id, strtime)  
+        self.slug = slugify(unidecode(newslug))
         super(Product, self).save()
 
     def __str__(self):

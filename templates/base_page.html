@@ -214,17 +214,9 @@
                             <div class="dropdown-menu">
                                 <nav class="side-nav">
                                     <ul class="menu-vertical sf-arrows">
-                                        <li class="item-lead"><a href="#">تخفیف های روزانه</a></li>
-                                        <li class="item-lead"><a href="#">هدیه ها</a></li>
-                                        <li><a href="#">تخت خواب</a></li>
-                                        <li><a href="#">روشنایی</a></li>
-                                        <li><a href="#">مبل</a></li>
-                                        <li><a href="#">حافظه های ذخیره سازی</a></li>
-                                        <li><a href="#">میز و صندلی</a></li>
-                                        <li><a href="#">وسایل تزیینی </a></li>
-                                        <li><a href="#">کابینت آشپزخانه</a></li>
-                                        <li><a href="#">قهوه</a></li>
-                                        <li><a href="#">لوازم تعمیرات </a></li>
+                                    {% for category in categorys %}
+                                        <li class="item-lead"><a href="#">{{ category.name }}</a></li>
+                                    {% endfor %}   
                                     </ul><!-- End .menu-vertical -->
                                 </nav><!-- End .side-nav -->
                             </div><!-- End .dropdown-menu -->
